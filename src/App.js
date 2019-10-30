@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.css';
 
+import Input from './components/Input/Input';
+
 function App() {
   return (
     <div className="App">
-      <p>Test to deploy react apps into gh pages</p>
+      <Input />
     </div>
   );
 }
