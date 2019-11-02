@@ -14,6 +14,7 @@ class Input extends Component {
     buttonClickedHandler = () => {
         let input = this.state.inputValue;
         this.setState({items: this.state.items.concat(input)});
+        this.setState({inputValue: ''});
     }
 
     getValueHandler = (e) => {
@@ -29,7 +30,7 @@ class Input extends Component {
 
         return (
             <div >
-            <input className={styles.Input} type="text" id="input" onChange={this.getValueHandler} required></input>
+            <input className={styles.Input} type="text" value={this.state.inputValue} onChange={this.getValueHandler} required></input>
             <Button clicked={this.buttonClickedHandler}><b>+</b></Button>
             <List>{data}</List>
             </div>
