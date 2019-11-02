@@ -1,13 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styles from './Input.module.css';
 
 import Button from '../Button/Button';
+import List from '../List/List';
 
-const input = (props) => (
-    <div className={styles.Input}>
-        <input type="text"></input>
-        <Button>Add</Button>
-    </div>
-);
+class Input extends Component {
 
-export default input;
+    state = {
+        items : [],
+        inputValue : ''
+    }
+
+    buttonClickedHandler = () => {
+        let input = this.state.inputValue;
+        this.setState({items: this.state.items.concat(input)});
+    }
+
+    getValueHandler = (e) => {
+        this.setState({inputValue: e.target.value})
+    }
+
+
+    render() {
+        const data = this.state.items.map((item,index) => {
+            return <p key={index}>{item}</p>;
+        })
+
+
+        return (
+            <div >
+            <input className={styles.Input} type="text" id="input" onChange={this.getValueHandler} required></input>
+            <Button clicked={this.buttonClickedHandler}><b>+</b></Button>
+            <List>{data}</List>
+            </div>
+        );
+        };
+}
+
+export default Input;
