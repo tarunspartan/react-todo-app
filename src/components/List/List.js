@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-// import Button from '../Button/Button';
+import styles from './List.module.css';
 
+class List extends Component {
+     render() {
+          return (
+               <div className={styles.List}>{this.props.children}</div>
+          )
+     }
+}
 
-const list = (props) => (
-     <div>{props.children}</div>
-        
-);
-
-export default list;
+export default List;

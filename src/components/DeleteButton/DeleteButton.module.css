@@ -1,0 +1,13 @@
+.Button {
+    background-color: rgba(255, 59, 48,0.6);
+    border-radius: 25px;
+    padding: 8px 20px;
+    margin: -6px;
+    border: none;
+    color: black;
+    outline-style: none;
+    text-align: center;
+    text-decoration: none;
+    float: right;
+    font-size: 16px;
+}

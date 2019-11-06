@@ -1,5 +1,6 @@
 .Button {
-    background-color: lightgreen;
+    background-color: rgb(76, 217, 100);
+    border-radius: 50px;
     border: none;
     color: black;
     padding: 15px 32px;
@@ -8,4 +9,5 @@
     display: inline-block;
     font-size: 16px;
     text-transform: capitalize;
+    outline-style: none;
 }

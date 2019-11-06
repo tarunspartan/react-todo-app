@@ -1,9 +1,8 @@
 .Input {
     margin: 16px;   
-    padding: 16px;
+    padding: 16px 100px 16px 10px;
     background-color: rgb(255, 255, 255);
-    border: 5px solid rgb(166, 190, 166);
+    border: 5px solid #b6dfb6;
+    border-radius: 60px;
+    outline-style: none;
 }
-
-
-  
