@@ -3,4 +3,11 @@
     padding: 15px;
     border-radius: 25px;
     background-color: rgb(202, 196, 196);
+    animation-name: example;
+    animation-duration: 1s;
 }
+
+@keyframes example {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
