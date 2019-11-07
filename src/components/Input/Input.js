@@ -21,7 +21,9 @@ class Input extends Component {
     }
 
     getValueHandler = (e) => {
-        this.setState({inputValue: e.target.value})
+        if(e.target.value !== ' '){
+            this.setState({inputValue: e.target.value})
+        }
     }
 
     deleteHandler = (i) => {
