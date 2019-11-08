@@ -5,6 +5,7 @@
     background-color: rgb(202, 196, 196);
     animation-name: example;
     animation-duration: 1s;
+    box-shadow: 2px 2px 5px rgb(100, 98, 98);
 }
 
 @keyframes example {

@@ -10,4 +10,5 @@
     font-size: 16px;
     text-transform: capitalize;
     outline-style: none;
+    box-shadow: 5px 5px 10px grey;
 }
