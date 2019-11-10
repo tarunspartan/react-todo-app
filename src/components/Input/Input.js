@@ -9,8 +9,18 @@ class Input extends Component {
 
     state = {
         items : [],
-        inputValue : ''
+        inputValue : '',
     }
+
+    componentDidMount(){
+        this.setState({items:JSON.parse(localStorage.getItem('itemsListArray'))})
+    }
+
+    componentDidUpdate(){
+        localStorage.setItem('itemsListArray',JSON.stringify(this.state.items))
+    }
+
+    com
 
     buttonClickedHandler = () => {
         if(this.state.inputValue){
@@ -33,18 +43,19 @@ class Input extends Component {
 
 
     render() {
-
         const listData = this.state.items.map((item,index) => {
-            return <List className={styles.List} key={index}>{item}<DeleteButton clicked={() => {this.deleteHandler(index)}}><b>-</b></DeleteButton></List>
+            return <List key={index}>{item}<DeleteButton clicked={() => {this.deleteHandler(index)}}><b>-</b></DeleteButton></List>
         })
 
         return (
-            <div>
-            <div style={{textAlign:"center"}}>
-            <input className={styles.Input} type="text" placeholder="Add a to-do list..." value={this.state.inputValue} onChange={this.getValueHandler} required></input>
-            <Button className={styles.Button} clicked={this.buttonClickedHandler}><b>+</b></Button></div>
-            <div>{listData}</div>
+            
+            <>
+            <div className={styles.Main}>
+                <input className={styles.Input} type="text" placeholder="Add a to-do list..." value={this.state.inputValue} onChange={this.getValueHandler} required></input>
+                <Button className={styles.Button} clicked={this.buttonClickedHandler}><b>+</b></Button>
             </div>
+            {this.state.items[0] ? <div>{listData}</div> : <h1 className={styles.Empty}>Add some Tasks...</h1>}
+            </>
         );
     };
 }

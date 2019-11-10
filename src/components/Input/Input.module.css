@@ -1,9 +1,40 @@
 .Input {
     margin: 16px;   
-    padding: 16px 100px 16px 10px;
+    padding: 16px;  
     background-color: rgb(255, 255, 255);
-    border: 5px solid #b6dfb6;
+    border: 5px solid #a7e4aa;
     border-radius: 60px;
     outline-style: none;
-    box-shadow: 5px 5px 10px grey;
+    box-shadow: 5px 5px 10px rgb(158, 200, 164);
+    position: sticky;
+    top: 2px;
+}
+
+.Input[type="text"]{
+    width: 170px;
+}
+
+@media only screen and (min-width: 500px){
+    .Input[type="text"] {
+        width: 70%;
+    }
+}
+
+.Main{
+    text-align: center;
+    position: sticky;
+    top: 0px;
+    background-color: #7bed9f;
+    /* box-shadow:5px 5px 20px 1px grey ; */
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.Empty {
+    position: absolute;
+    color: rgb(228, 74, 74);
+    left: 50vw;
+    top: 50vh;
+    transform: translate(-50%,-50%); 
+    opacity: 0.7;
 }
