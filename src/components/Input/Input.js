@@ -13,7 +13,10 @@ class Input extends Component {
     }
 
     componentDidMount(){
-        this.setState({items:JSON.parse(localStorage.getItem('itemsListArray'))})
+        localStorage.setItem('itemsListArray',JSON.stringify(this.state.items))
+        if(JSON.parse(localStorage.getItem('itemsListArray')).length !== 0){
+            this.setState({items:JSON.parse(localStorage.getItem('itemsListArray'))})
+        }
     }
 
     componentDidUpdate(){
