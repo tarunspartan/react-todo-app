@@ -1,66 +1,46 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Input.module.css';
 
 import Button from '../Button/Button';
 import List from '../List/List';
 import DeleteButton from '../DeleteButton/DeleteButton';
 
-class Input extends Component {
+const Input = props => {
+    const [value , setValue] = useState('');
+    const [todoList, setTodoList] = useState(JSON.parse(localStorage.getItem("todoItems")) || []);
 
-    state = {
-        items : [],
-        inputValue : '',
+    useEffect(()=> {
+        localStorage.setItem("todoItems",JSON.stringify(todoList))
+    })
+
+    const getValueHandler = event => {
+        setValue(event.target.value);
     }
 
-    componentDidMount(){
-        localStorage.setItem('itemsListArray',JSON.stringify(this.state.items))
-        if(JSON.parse(localStorage.getItem('itemsListArray')).length !== 0){
-            this.setState({items:JSON.parse(localStorage.getItem('itemsListArray'))})
+    const buttonClickedHandler = () => {
+        if(value){
+            setTodoList(todoList.concat(value));
+            setValue('');
         }
     }
 
-    componentDidUpdate(){
-        localStorage.setItem('itemsListArray',JSON.stringify(this.state.items))
+    const deleteHandler = (i) => {
+        const modifiedList = todoList.filter(data => data !== todoList[i]);
+        setTodoList(modifiedList);
     }
 
-    com
-
-    buttonClickedHandler = () => {
-        if(this.state.inputValue){
-            let input = this.state.inputValue;
-            this.setState({items: this.state.items.concat(input)});
-            this.setState({inputValue: ''});
-        }
-    }
-
-    getValueHandler = (e) => {
-        if(e.target.value !== ' '){
-            this.setState({inputValue: e.target.value})
-        }
-    }
-
-    deleteHandler = (i) => {
-        const modifiedList = this.state.items.filter(data => data !== this.state.items[i])
-        this.setState({items:modifiedList})
-    }
-
-
-    render() {
-        const listData = this.state.items.map((item,index) => {
-            return <List key={index}>{item}<DeleteButton clicked={() => {this.deleteHandler(index)}}><b>-</b></DeleteButton></List>
-        })
-
-        return (
-            
-            <>
+    return (
+        <>
             <div className={styles.Main}>
-                <input className={styles.Input} type="text" placeholder="Add a to-do list..." value={this.state.inputValue} onChange={this.getValueHandler} required></input>
-                <Button className={styles.Button} clicked={this.buttonClickedHandler}><b>+</b></Button>
-            </div>
-            {this.state.items[0] ? <div>{listData}</div> : <h1 className={styles.Empty}>Add some Tasks...</h1>}
-            </>
-        );
-    };
-}
+            <input className={styles.Input} type="text" placeholder="Add a to-do list..." value={value} onChange={getValueHandler} required></input>
+            <Button className={styles.Button} clicked={buttonClickedHandler}><b>+</b></Button></div>
+            
+            { todoList ? todoList.map((item,index) => {
+                return <List key={index}>{item}<DeleteButton clicked={() => {deleteHandler(index)}}><b>-</b></DeleteButton></List>
+            })  : <h1 className={styles.Empty}>Add some Tasks...</h1> }
+        </>
+    )
+};
 
 export default Input;
+
