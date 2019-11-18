@@ -7,7 +7,7 @@ import DeleteButton from '../DeleteButton/DeleteButton';
 
 const Input = props => {
     const [value , setValue] = useState('');
-    const [todoList, setTodoList] = useState(JSON.parse(localStorage.getItem("todoItems")) || []);
+    const [todoList, setTodoList] = useState(JSON.parse(localStorage.getItem("todoItems")) || ["Hi. I made this app while learning React. This is simple Todo App which can store your Tasks. You can delete task once you completed by tapping red icon on top-right corner of specific task."]);
 
     useEffect(()=> {
         localStorage.setItem("todoItems",JSON.stringify(todoList))
@@ -35,7 +35,7 @@ const Input = props => {
             <input className={styles.Input} type="text" placeholder="Add a to-do list..." value={value} onChange={getValueHandler} required></input>
             <Button className={styles.Button} clicked={buttonClickedHandler}><b>+</b></Button></div>
             
-            { todoList ? todoList.map((item,index) => {
+            { todoList[0] ? todoList.map((item,index) => {
                 return <List key={index}>{item}<DeleteButton clicked={() => {deleteHandler(index)}}><b>-</b></DeleteButton></List>
             })  : <h1 className={styles.Empty}>Add some Tasks...</h1> }
         </>
