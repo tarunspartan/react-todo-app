@@ -10,8 +10,8 @@ const Input = props => {
     const [todoList, setTodoList] = useState(JSON.parse(localStorage.getItem("todoItems")) || ["Hi. I made this app while learning React. This is simple Todo App which can store your Tasks. You can delete task once you completed by tapping red icon on top-right corner of specific task."]);
 
     useEffect(()=> {
-        localStorage.setItem("todoItems",JSON.stringify(todoList))
-    })
+        localStorage.setItem("todoItems",JSON.stringify(todoList));
+    },[todoList])
 
     const getValueHandler = event => {
         setValue(event.target.value);
@@ -25,7 +25,7 @@ const Input = props => {
     }
 
     const deleteHandler = (i) => {
-        const modifiedList = todoList.filter(data => data !== todoList[i]);
+        const modifiedList = todoList.filter((data) => data !== todoList[i]);
         setTodoList(modifiedList);
     }
 
